@@ -28,5 +28,36 @@ public class OrderItem {
 
     private int count;
 
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public void setPrice(int price) {
+        this.orderPrice = price;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public void cancel() {
+        this.item.addQuantity(count);
+    }
+
+    public int getTotalPrice() {
+        return this.getOrderPrice() * this.getCount();
+    }
+
+    public static OrderItem createOrderItem(Item item, int price, int count) {
+        OrderItem orderItem = new OrderItem();
+        item.removeQuantity(count);
+        orderItem.setItem(item);
+        orderItem.setPrice(price);
+        orderItem.setCount(count);
+        return orderItem;
+    }
 }
